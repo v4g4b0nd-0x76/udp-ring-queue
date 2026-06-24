@@ -95,6 +95,9 @@ pub const fn items_per_frame(wire_bytes: usize) -> usize {
     }
     MAX_UDP_FRAME_PAYLOAD / wire_bytes
 }
+pub const UDP_RECV_BATCH_TARGET_BYTES: usize = 512 * 1024;
+
+pub const UDP_RECV_BATCH: usize = UDP_RECV_BATCH_TARGET_BYTES / MAX_UDP_DATAGRAM;
 
 pub const UNIFIED_IP_WIRE_BYTES: usize = 0; // base on fields you shall manually calculate the
 // possible frame size the calculation always is not
