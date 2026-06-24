@@ -1,0 +1,11 @@
+[package]
+name = "sender"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+shared = { path = "../shared" }
+libc = "0.2"
+socket2 = { version = "0.5.10", features = ["all"] }
+crossbeam-queue = "0.3.12"
+rand = "0.10.1"
