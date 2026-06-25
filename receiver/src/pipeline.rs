@@ -12,7 +12,7 @@ use shared::{
     MAX_UDP_DATAGRAM,
     types::{DecodedLogItems, UnifiedIp},
 };
-use libc::{EAGAIN, MSG_DONTWAIT, iovec, mmsghdr, recvmmsg};
+use libc::{ iovec, mmsghdr, recvmmsg};
 
 
 pub struct Stats {

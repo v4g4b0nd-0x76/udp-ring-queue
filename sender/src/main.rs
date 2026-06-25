@@ -42,3 +42,16 @@ fn produce_mock_data(mock_data: &mut Vec<UnifiedIp>) {
 fn ip_to_u32(ip: &str) -> u32 {
     ip.parse::<Ipv4Addr>().ok().map(u32::from).unwrap()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_produce_mock_data() {
+        const MOCK_LEN: usize = 1_000_000;
+        let mut mock_data = Vec::with_capacity(MOCK_LEN);
+        produce_mock_data(&mut mock_data);
+        assert_eq!(mock_data.len(), MOCK_LEN);
+    }
+}
