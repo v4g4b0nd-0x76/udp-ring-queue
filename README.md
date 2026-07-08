@@ -1,8 +1,16 @@
 # UDP Ring Queue
 
-an abstraction of one of my challanges in work to send in memory data from one process in one server to another server using udp without data loss by optimizing syscalls to send/receive more packets with less syscalls and enqueuing data as pre allocated fixed size ring buffers  with eviction strategy to prevent memory overfloww crash.
+An abstraction of one of the challenges I faced at work: transferring in-memory data from one process on a server to another server using UDP without data loss.
 
-the main technique is to know what data we shall expect to receive as bytes and how to decode them and how many of them are in one packet using a custome UDP frame
+The main goal was optimizing syscall usage to send and receive more packets with fewer syscalls and dont transform data encoding which leads to copying data into biffer buffers, while using pre-allocated fixed-size ring buffers with an eviction strategy to prevent memory overflow and process crashes.
 
+This repository is a demo of the techniques and workflow I use in production at work. It is not the actual production code, but a simplified implementation that demonstrates the core concepts and architecture.
 
-**Note:** make sure you are using linux to build this project or use containers or correct instruction as the main component of both receiver and sender is libc
+The main technique is defining a custom UDP frame format where we know:
+- What data we should expect to receive as bytes
+- How to decode the received bytes
+- How many records are contained in each packet
+
+This allows efficient serialization, batching, and processing of UDP messages while reducing unnecessary overhead.
+
+**Note:** Make sure you are using Linux to build and run this project, or use a container with a Linux environment. The main components of both the receiver and sender rely on `libc` system calls that are not supported on all platforms.
